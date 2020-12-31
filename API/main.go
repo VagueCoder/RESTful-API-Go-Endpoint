@@ -46,8 +46,10 @@ func (db DatabaseObj) rootEndpoint(writer http.ResponseWriter, request *http.Req
 }
 
 func main() {
-	os.Getenv("MONGO_SERVICE_NAME")
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://MONGO_SERVICE_NAME:27017"))
+	mongo_service := os.Getenv("MONGO_SERVICE_NAME")
+	port := os.Getenv("API_PORT")
+
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://" + mongo_service + ":27017"))
 	if err != nil {
 		log.Fatal("Mongo Error: ", err)
 	}
@@ -69,6 +71,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", homePage).Methods("GET")
 	router.HandleFunc("/", databaseObj.rootEndpoint).Methods("POST")
-	fmt.Println("RESTful-API-Go-Endpoint Hosted on port 8080")
-	log.Fatal("HTTP Error: ", http.ListenAndServe(":8080", router))
+	fmt.Println("RESTful-API-Go-Endpoint Hosted on port " + port)
+	log.Fatal("HTTP Error: ", http.ListenAndServe(port, router))
 }

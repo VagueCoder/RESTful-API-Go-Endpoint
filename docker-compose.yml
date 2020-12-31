@@ -1,0 +1,62 @@
+version: "3.9"
+services: 
+  restful-api:
+    container_name: RESTful-API-Go-Endpoint
+    depends_on:
+      - database
+    restart: always
+    build:
+      context: ./API
+      dockerfile: Dockerfile
+    ports:
+     - "8080:8080"
+    environment:
+      MONGO_SERVICE_NAME: "database"
+      API_PORT: ":8080"
+    networks:
+      - rest_api_go_endpoint_network
+  
+  database:
+    container_name: MongoDB
+    restart: always
+    image: mongo:4.4.2
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: volume
+        source: mongodata
+        target: /data/db
+    networks:
+      - rest_api_go_endpoint_network
+  
+  nginx:
+    container_name: Nginx-Proxy
+    depends_on:
+      - restful-api
+    restart: always
+    build:
+      context: ./Nginx
+      dockerfile: Dockerfile
+    environment:
+      API_PORT: ":8080"
+    expose:
+      - 8080
+    volumes:
+      - type: volume
+        source: ./Nginx
+        target: /var/log/nginx
+    networks:
+      - rest_api_go_endpoint_network
+
+volumes:
+  mongodata:
+  Nginx:
+
+networks:
+  rest_api_go_endpoint_network:
+    name: rest_api_go_endpoint_network
+
+  
+
+    
+
