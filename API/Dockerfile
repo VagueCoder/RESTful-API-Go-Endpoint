@@ -2,7 +2,7 @@ FROM golang:1.15.6-alpine3.12
 
 RUN apk --no-cache add gcc g++ make git
 
-LABEL Maintainer="Vague Coder <vaguecoder0to.n@gami.com>"
+LABEL Maintainer="Vague Coder <vaguecoder0to.n@gmail.com>"
 
 WORKDIR $GOPATH/src/github.com/VagueCoder/RESTful-API-Go-Endpoint/API
 

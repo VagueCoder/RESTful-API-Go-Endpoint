@@ -1,0 +1,8 @@
+192.168.96.1 - - [03/Jan/2021:18:09:47 +0000] "GET /go HTTP/1.1" 404 19 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.96.1 - - [03/Jan/2021:18:09:55 +0000] "GET / HTTP/1.1" 404 153 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.112.1 - - [03/Jan/2021:18:12:13 +0000] "GET / HTTP/1.1" 404 153 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.112.1 - - [03/Jan/2021:18:12:16 +0000] "GET /go HTTP/1.1" 404 19 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.112.1 - - [03/Jan/2021:18:12:22 +0000] "GET /go HTTP/1.1" 404 19 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.112.1 - - [03/Jan/2021:18:12:34 +0000] "GET /go HTTP/1.1" 404 19 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.112.1 - - [03/Jan/2021:18:12:41 +0000] "GET /go HTTP/1.1" 404 19 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"
+192.168.144.1 - - [03/Jan/2021:18:16:09 +0000] "GET / HTTP/1.1" 200 12 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0" "-"

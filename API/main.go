@@ -1,14 +1,14 @@
 package main
 
 import (
-	"os"
-	"fmt"
-	"log"
-	"time"
 	"context"
-	"net/http"
-	"io/ioutil"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"os"
+	"time"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,8 +16,7 @@ import (
 )
 
 type DatabaseObj struct {
-	Collection	*mongo.Collection
-	Context		context.Context
+	Collection *mongo.Collection
 }
 
 func homePage(writer http.ResponseWriter, request *http.Request) {
@@ -46,15 +45,15 @@ func (db DatabaseObj) rootEndpoint(writer http.ResponseWriter, request *http.Req
 }
 
 func main() {
-	mongo_service := os.Getenv("MONGO_SERVICE_NAME")
-	port := os.Getenv("API_PORT")
+	mongoservice := os.Getenv("MONGO_SERVICE_NAME")
+	port := ":" + os.Getenv("API_PORT")
 
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://" + mongo_service + ":27017"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://" + mongoservice + ":27017"))
 	if err != nil {
 		log.Fatal("Mongo Error: ", err)
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	err = client.Connect(ctx)
@@ -65,9 +64,8 @@ func main() {
 
 	databaseObj := DatabaseObj{
 		Collection: client.Database("Mydatabase").Collection("Mycollection"),
-		Context:	context.Background(),
 	}
-	
+
 	router := mux.NewRouter()
 	router.HandleFunc("/", homePage).Methods("GET")
 	router.HandleFunc("/", databaseObj.rootEndpoint).Methods("POST")
