@@ -16,12 +16,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type DatabaseObject struct {
+type databaseObject struct {
+	/* The MongoDB Connection Object to carry the collection and context objects to Handler Functions */
 	Collection	*mongo.Collection
 	Context		context.Context
 }
 
-func (db DatabaseObject) GetEndpoint(writer http.ResponseWriter, request *http.Request) {
+func (db databaseObject) GetEndpoint(writer http.ResponseWriter, request *http.Request) {
+	/* The handler function to print all the documents from the collection on the Response.Body */
 	var data []map[string]interface{}
 
 	cursor, err := db.Collection.Find(db.Context, bson.M{})
@@ -35,6 +37,7 @@ func (db DatabaseObject) GetEndpoint(writer http.ResponseWriter, request *http.R
 	for cursor.Next(db.Context) {
 		var doc map[string]interface{}
 		cursor.Decode(&doc)
+		delete(doc, "_id")
 		data = append(data, doc)
 	}
 
@@ -47,7 +50,8 @@ func (db DatabaseObject) GetEndpoint(writer http.ResponseWriter, request *http.R
 	json.NewEncoder(writer).Encode(data)
 }
 
-func (db DatabaseObject) PostEndpoint(writer http.ResponseWriter, request *http.Request) {
+func (db databaseObject) PostEndpoint(writer http.ResponseWriter, request *http.Request) {
+	/* The handler function to store the formdata as documents in the collection */
 	var data interface{}
 	byteData, err := ioutil.ReadAll(request.Body)
 	if err != nil {
@@ -85,7 +89,7 @@ func main() {
 	}
 	defer client.Disconnect(ctx)
 
-	dbo := DatabaseObject{
+	dbo := databaseObject{
 		Collection: client.Database("Mydatabase").Collection("Mycollection"),
 	}
 
