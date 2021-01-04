@@ -23,9 +23,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - type: volume
-        source: mongodata
-        target: /data/db
+      - mongodata:/data/db
     networks:
       - rest_api_go_endpoint_network
   
