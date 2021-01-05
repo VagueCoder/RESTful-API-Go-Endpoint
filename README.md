@@ -1,6 +1,6 @@
 # RESTful-API-Go-Endpoint
 
-## What is this?
+## What does this project do? :bulb:
 As the name suggests, the program is an Endpoint set up for demonstrating REST API using Golang web server, routed through an Nginx server and the basic CRUD are done to and from Mongo database server. All the three modules are encapsulated in Docker containers. This dosen't solve any challenges or disclose new features, but just implements the following flow in practice. The aim is to input the data and get the same data as output passing through all the modules as follows:<br><br>
 
 ![alt type](https://github.com/VagueCoder/RESTful-API-Go-Endpoint/blob/master/RESTful-API-Go-Endpoint.png)
@@ -24,7 +24,7 @@ As the name suggests, the program is an Endpoint set up for demonstrating REST A
 5 | Database | MongoDB Version 4.4.2
 6 | Network Proxy | Nginx Version 1.19.6
 
-> This doesn't probably effect the usage, as the application works in Docker containers. But of course, the development steps may differ as per your configuration. The required softwares/configurations are mentioned under **Prerequisites** section.
+> These doesn't probably effect the usage, as the application runs in Docker containers. But of course, the development steps may differ as per your configuration. The required softwares/configurations are mentioned under **Prerequisites** section.
 
 ## Prerequisites :file_folder:
 **Sno.** | **Software** | **Detail** | **Download Links/Steps** |
@@ -39,7 +39,7 @@ As the name suggests, the program is an Endpoint set up for demonstrating REST A
 **Sno.** | **Port Number** | **Endpoint** | **Exposed to Host** | **Comment**
 -------: | :-------------: | :----------: | :---------: | :----------
 1 | 8080 | Nginx Proxy | Yes | This is statically binded in [docker-compose.yml](https://github.com/VagueCoder/RESTful-API-Go-Endpoint/blob/master/docker-compose.yml) file. However, you may use a different port for the application.
-2 | 8081 | Go Web API | No | This is internal to docker network alone, and not exposed to host as we expect the routing to happen through the Nginx. There is no fixed port for this. You may change the number in [docker-compose.yml](https://github.com/VagueCoder/RESTful-API-Go-Endpoint/blob/master/docker-compose.yml) under services -> restful-api -> environment -> API_PORT.  
+2 | 8081 | Go Web API | No | This is internal to docker network alone, and not exposed to host as we expect the routing to happen through the Nginx. There is no fixed port for this. You may change the number in [docker-compose.yml](https://github.com/VagueCoder/RESTful-API-Go-Endpoint/blob/master/docker-compose.yml) under <br>services -> restful-api -> environment -> API_PORT.  
 3 | 27017 | MongoDB | No | This is internal to docker network alone and not exposed to host as the host mongod server's default port 27017 may collide. However, you can map the internal 27017 with any other port on the host system.
 
 ## Setup Application in Local :bookmark_tabs:
@@ -70,7 +70,7 @@ docker ps
 ```
 The first command, `docker-compose ps` gives the status of all the services running in the same directory and the second, `docker ps` shows all the docker processes running on the desktop.
 
-4. Close the services/application:
+5. Close the services/application:
 ```
 docker-compose down
 ```
@@ -111,7 +111,7 @@ Simple 2 step process:
 You should get an ID from Mongo server something like `{"InsertedID":"5ff46d7b9927aae97da877b8"}`. This confirms the load operation.
 
 #### 2. Retrieve the data using GET request
-* Just hit the url `localhost:8080` using any browser or Postman and you should data loaded, probably in flattened style.
+* Just hit the url `localhost:8080` using any browser or Postman, and you should get the data loaded earlier, probably in flattened style.
 ```
 [{"records":[{"city":"Berlin","country":"Germany","famous foods":{"count":3,"foods":["Currywurst","Döner Kebab","Bockwurst"]},"name":"Alfreds Futterkiste"},{"city":"México D.F.","country":"Mexico","name":"Ana Trujillo Emparedados y helados"}]}]
 ```
