@@ -1,4 +1,4 @@
-# RESTful-API-Go-Endpoint
+# [RESTful-API-Go-Endpoint](https://github.com/VagueCoder/RESTful-API-Go-Endpoint)
 
 ## What does this project do? :bulb:
 As the name suggests, the program is an Endpoint set up for demonstrating REST API using Golang web server, routed through an Nginx server and the basic CRUD are done to and from Mongo database server. All the three modules are encapsulated in Docker containers. This dosen't solve any challenges or disclose new features, but just implements the following flow in practice. The aim is to input the data and get the same data as output passing through all the modules as follows:<br><br>
@@ -128,6 +128,6 @@ The steps are pretty simple.
 Use the URLs, methods, form data and check for outputs in this with that of mentioned under `Making the Calls` section above.
 
 
-#### This concludes everything that is required to check and make use of the [Amazon-Scraper-Collector](https://github.com/VagueCoder/Amazon-Scraper-Collector). The code walk-throughs will be added in the future developments on this. For any issues, queries or discussions, please update in issues menu or write to `vaguecoder0to.n@gmail.com`.
+#### This concludes everything that is required to check and make use of the [RESTful-API-Go-Endpoint](https://github.com/VagueCoder/RESTful-API-Go-Endpoint). The code walk-throughs will be added in the future developments on this. For any issues, queries or discussions, please update in issues menu or write to `vaguecoder0to.n@gmail.com`.
 
 ## Happy Coding !! :metal:
